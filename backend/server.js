@@ -20,6 +20,11 @@ import resumeRoutes from './routes/resumeRoutes.js';
 // Load env vars
 dotenv.config();
 
+const corsOptions = {
+  origin: 'https://portfolio-oxyp8rmvf-sarathsureshcs-projects.vercel.app',
+  optionsSuccessStatus: 200,
+};
+
 // Connect to database
 connectDB();
 
@@ -27,7 +32,9 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+
+
+app.use(cors(corsOptions));
 
 // Define routes
 app.use('/api/users', userRoutes);
