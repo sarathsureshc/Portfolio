@@ -23,6 +23,8 @@ dotenv.config();
 const allowedOrigins = [
   'https://portfolio-oxyp8rmvf-sarathsureshcs-projects.vercel.app',
   'https://portfolio-sarathsureshcs-projects.vercel.app/',
+  'https://portfolio-git-main-sarathsureshcs-projects.vercel.app/',
+  'https://portfolio-rkjb903ct-sarathsureshcs-projects.vercel.app/',
 ];
 
 const corsOptions = {
