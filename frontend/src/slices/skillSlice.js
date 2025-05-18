@@ -110,6 +110,7 @@ export const deleteSkill = createAsyncThunk(
       const {
         auth: { userInfo },
       } = getState();
+      
 
       const config = {
         headers: {
