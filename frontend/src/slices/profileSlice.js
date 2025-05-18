@@ -2,12 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Get profile
 export const getProfile = createAsyncThunk(
   'profile/getProfile',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/api/profile');
+      const { data } = await axios.get(`${API_URL}/api/profile`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -34,7 +36,7 @@ export const getProfileById = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.get(`/api/profile/${id}`, config);
+      const { data } = await axios.get(`${API_URL}/api/profile/${id}`, config);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -63,7 +65,7 @@ export const createOrUpdateProfile = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        '/api/profile',
+        `${API_URL}/api/profile`,
         profileData,
         config
       );

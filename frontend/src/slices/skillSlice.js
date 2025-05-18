@@ -2,12 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Get all skills
 export const getSkills = createAsyncThunk(
   'skills/getSkills',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/api/skills');
+      const { data } = await axios.get(`${API_URL}/api/skills`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -24,7 +26,7 @@ export const getSkillById = createAsyncThunk(
   'skills/getSkillById',
   async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/skills/${id}`);
+      const { data } = await axios.get(`${API_URL}/api/skills/${id}`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -53,7 +55,7 @@ export const createSkill = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        '/api/skills',
+        `${API_URL}/api/skills`,
         skillData,
         config
       );
@@ -85,7 +87,7 @@ export const updateSkill = createAsyncThunk(
       };
 
       const { data } = await axios.put(
-        `/api/skills/${id}`,
+        `${API_URL}/api/skills/${id}`,
         skillData,
         config
       );
@@ -115,7 +117,7 @@ export const deleteSkill = createAsyncThunk(
         },
       };
 
-      await axios.delete(`/api/skills/${id}`, config);
+      await axios.delete(`${API_URL}/api/skills/${id}`, config);
       return id;
     } catch (error) {
       return rejectWithValue(

@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Create contact
 export const createContact = createAsyncThunk(
   'contacts/createContact',
@@ -14,7 +16,7 @@ export const createContact = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        '/api/contact',
+        `${API_URL}/api/contact`,
         contactData,
         config
       );
@@ -44,7 +46,7 @@ export const getContacts = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.get('/api/contact', config);
+      const { data } = await axios.get(`${API_URL}/api/contact`, config);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -71,7 +73,7 @@ export const getContactById = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.get(`/api/contact/${id}`, config);
+      const { data } = await axios.get(`${API_URL}/api/contact/${id}`, config);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -98,7 +100,7 @@ export const deleteContact = createAsyncThunk(
         },
       };
 
-      await axios.delete(`/api/contact/${id}`, config);
+      await axios.delete(`${API_URL}/api/contact/${id}`, config);
       return id;
     } catch (error) {
       return rejectWithValue(

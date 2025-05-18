@@ -2,12 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Get all projects
 export const getProjects = createAsyncThunk(
   'projects/getProjects',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/api/projects');
+      const { data } = await axios.get(`${API_URL}/api/projects`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -24,7 +26,7 @@ export const getProjectById = createAsyncThunk(
   'projects/getProjectById',
   async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/projects/${id}`);
+      const { data } = await axios.get(`${API_URL}/api/projects/${id}`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -53,7 +55,7 @@ export const createProject = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        '/api/projects',
+        `${API_URL}/api/projects`,
         projectData,
         config
       );
@@ -85,7 +87,7 @@ export const updateProject = createAsyncThunk(
       };
 
       const { data } = await axios.put(
-        `/api/projects/${id}`,
+        `${API_URL}/api/projects/${id}`,
         projectData,
         config
       );
@@ -115,7 +117,7 @@ export const deleteProject = createAsyncThunk(
         },
       };
 
-      await axios.delete(`/api/projects/${id}`, config);
+      await axios.delete(`${API_URL}/api/projects/${id}`, config);
       return id;
     } catch (error) {
       return rejectWithValue(

@@ -2,12 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Get all experiences
 export const getExperiences = createAsyncThunk(
   'experiences/getExperiences',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/api/experience');
+      const { data } = await axios.get(`${API_URL}/api/experience`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -24,7 +26,7 @@ export const getExperienceById = createAsyncThunk(
   'experiences/getExperienceById',
   async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/experience/${id}`);
+      const { data } = await axios.get(`${API_URL}/api/experience/${id}`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -53,7 +55,7 @@ export const createExperience = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        '/api/experience',
+        `${API_URL}/api/experience`,
         experienceData,
         config
       );
@@ -85,7 +87,7 @@ export const updateExperience = createAsyncThunk(
       };
 
       const { data } = await axios.put(
-        `/api/experience/${id}`,
+        `${API_URL}/api/experience/${id}`,
         experienceData,
         config
       );
@@ -115,7 +117,7 @@ export const deleteExperience = createAsyncThunk(
         },
       };
 
-      await axios.delete(`/api/experience/${id}`, config);
+      await axios.delete(`${API_URL}/api/experience/${id}`, config);
       return id;
     } catch (error) {
       return rejectWithValue(

@@ -2,12 +2,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Get all education entries
 export const getEducations = createAsyncThunk(
   'education/getEducations',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get('/api/education');
+      const { data } = await axios.get(`${API_URL}/api/education`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -24,7 +26,7 @@ export const getEducationById = createAsyncThunk(
   'education/getEducationById',
   async (id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.get(`/api/education/${id}`);
+      const { data } = await axios.get(`${API_URL}/api/education/${id}`);
       return data;
     } catch (error) {
       return rejectWithValue(
@@ -53,7 +55,7 @@ export const createEducation = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        '/api/education',
+        `${API_URL}/api/education`,
         educationData,
         config
       );
@@ -85,7 +87,7 @@ export const updateEducation = createAsyncThunk(
       };
 
       const { data } = await axios.put(
-        `/api/education/${id}`,
+        `${API_URL}/api/education/${id}`,
         educationData,
         config
       );
@@ -115,7 +117,7 @@ export const deleteEducation = createAsyncThunk(
         },
       };
 
-      await axios.delete(`/api/education/${id}`, config);
+      await axios.delete(`${API_URL}/api/education/${id}`, config);
       return id;
     } catch (error) {
       return rejectWithValue(
