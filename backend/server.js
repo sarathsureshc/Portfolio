@@ -20,8 +20,19 @@ import resumeRoutes from './routes/resumeRoutes.js';
 // Load env vars
 dotenv.config();
 
+const allowedOrigins = [
+  'https://portfolio-oxyp8rmvf-sarathsureshcs-projects.vercel.app',
+  'https://portfolio-sarathsureshcs-projects.vercel.app/',
+];
+
 const corsOptions = {
-  origin: 'https://portfolio-oxyp8rmvf-sarathsureshcs-projects.vercel.app',
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   optionsSuccessStatus: 200,
 };
 
