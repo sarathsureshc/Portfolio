@@ -24,6 +24,7 @@ const allowedOrigins = [
   'https://portfolio-oxyp8rmvf-sarathsureshcs-projects.vercel.app',
   'https://portfolio-bay-one-45.vercel.app',
   'https://portfolio-production-8966.up.railway.app',
+  'http://localhost:3000/'
 ];
 
 const corsOptions = {
