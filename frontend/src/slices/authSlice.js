@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Login user
 export const login = createAsyncThunk(
   'auth/login',
@@ -14,7 +16,7 @@ export const login = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        '/api/users/login',
+        `${API_URL}/api/users/login`,
         { email, password },
         config
       );
@@ -43,7 +45,7 @@ export const register = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        '/api/users',
+        `${API_URL}/api/users`,
         { name, email, password },
         config
       );
@@ -77,7 +79,7 @@ export const updateProfile = createAsyncThunk(
       };
 
       const { data } = await axios.put(
-        '/api/users/profile',
+        `${API_URL}/api/users/profile`,
         userData,
         config
       );
