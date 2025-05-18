@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume - {{name}}</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 36px;
+      color: #2a2a2a;
+    }
+    .header h2 {
+      margin: 5px 0 0;
+      font-weight: normal;
+      font-size: 20px;
+      color: #555;
+    }
+    .contact-info {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+    .contact-info p {
+      margin: 5px 0;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #3498db;
+      padding-bottom: 5px;
+      color: #2a2a2a;
+    }
+    .skills-list {
+      list-style-type: none;
+      display: flex;
+      flex-wrap: wrap;
+      padding-left: 0;
+    }
+    .skills-list li {
+      background-color: #f0f0f0;
+      padding: 5px 10px;
+      margin: 5px;
+      border-radius: 3px;
+      font-size: 14px;
+    }
+    .experience-item, .education-item {
+      margin-bottom: 20px;
+    }
+    .job-title, .degree {
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+    .company, .school {
+      font-style: italic;
+      margin-bottom: 5px;
+    }
+    .date {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+    .job-description, .education-description {
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>{{name}}</h1>
+      <h2>{{title}}</h2>
+    </div>
+    
+    <div class="contact-info">
+      <p>Email: {{email}} | Phone: {{phone}} | Location: {{location}}</p>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Professional Summary</div>
+      <p>Experienced MERN stack developer with a passion for creating efficient, scalable, and visually appealing web applications. Proficient in modern JavaScript frameworks and libraries, with a strong understanding of full-stack development principles.</p>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <ul class="skills-list">
+        {{skills}}
+      </ul>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Experience</div>
+      
+      <div class="experience-item">
+        <div class="job-title">Senior Frontend Developer</div>
+        <div class="company">Example Company</div>
+        <div class="date">January 2021 - Present</div>
+        <div class="job-description">
+          <ul>
+            <li>Developed and maintained responsive web applications using React.js</li>
+            <li>Collaborated with cross-functional teams to define, design, and ship new features</li>
+            <li>Improved application performance by 40% through code optimization</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="experience-item">
+        <div class="job-title">Full Stack Developer</div>
+        <div class="company">Another Company</div>
+        <div class="date">June 2018 - December 2020</div>
+        <div class="job-description">
+          <ul>
+            <li>Built RESTful APIs using Node.js and Express</li>
+            <li>Designed and implemented MongoDB database schemas</li>
+            <li>Integrated third-party services and APIs</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <div class="section-title">Education</div>
+      
+      <div class="education-item">
+        <div class="degree">Bachelor of Technology in Computer Science</div>
+        <div class="school">University Name</div>
+        <div class="date">2014 - 2018</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
