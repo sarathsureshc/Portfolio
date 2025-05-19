@@ -14,6 +14,8 @@ import ExperienceCard from '../components/ExperienceCard';
 import EducationCard from '../components/EducationCard';
 import { Download, MapPin, Mail, Globe, Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AboutPage = () => {
   const dispatch = useDispatch();
   const { profile, loading: profileLoading } = useSelector((state) => state.profile);
@@ -153,7 +155,7 @@ const AboutPage = () => {
                 </div>
                 
                 <a 
-                  href="/api/resume/generate" 
+                  href={`${API_URL}/api/resume/generate`} 
                   className="btn-primary flex items-center max-w-fit"
                 >
                   <Download size={16} className="mr-2" /> Download Resume
