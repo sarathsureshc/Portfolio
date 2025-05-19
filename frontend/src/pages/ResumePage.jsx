@@ -12,6 +12,8 @@ import Footer from '../components/Footer';
 import Meta from '../components/Meta';
 import Loader from '../components/Loader';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ResumePage = () => {
   const dispatch = useDispatch();
   const resumeRef = useRef(null);
@@ -38,9 +40,27 @@ const ResumePage = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  const downloadResume = () => {
-    // Download directly from backend API
-    window.location.href = '/api/resume/generate';
+  const downloadResume = async () => {
+    setDownloading(true);
+    try {
+      const response = await fetch(`${API_URL}/api/resume/generate`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'resume.pdf');
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading resume:', error);
+      alert('Failed to download resume. Please try again later.');
+    }
+    setDownloading(false);
   };
 
   const generatePDF = async () => {
